@@ -37,8 +37,8 @@ public class PuzzleBoard : MonoBehaviour
     }
     public void DragStart(InputAction.CallbackContext context)
     {
-        Debug.Log(context.started +"start");
-        Debug.Log(context.canceled +"cancel");
+        Debug.Log(context.started + "start");
+        Debug.Log(context.canceled + "cancel");
 
         if (context.started)
         {
@@ -46,7 +46,7 @@ public class PuzzleBoard : MonoBehaviour
             {
                 for (int j = 0; j < x; j++)
                 {
-                        PuzzleStones[j, i].GetComponent<PuzzleStone>().Hold = false;
+                    PuzzleStones[j, i].GetComponent<PuzzleStone>().Hold = false;
                 }
             }
             TouchPos = Touchscreen.current.position.ReadValue();
@@ -88,5 +88,36 @@ public class PuzzleBoard : MonoBehaviour
             }
         }
     }
+
+
+    void StoneThreeCheck()
+    {
+        int numX = 0;
+        int numY = 0;
+        for (int i = 0; i < y / 2; i++)
+        {
+            for (int j = 0; j < x; j++)
+            {
+
+                for (int n = 0; n < (y / 2) - i; n++)
+                { 
+                
+                }
+                for (int m = 0; m < x - j; m++)
+                {
+                    
+                    if (PuzzleStones[j, i].GetComponent<PuzzleStone>().MyAttribute == PuzzleStones[j + m, i].GetComponent<PuzzleStone>().MyAttribute)
+                    {
+                        numX++;
+                    }
+                    else {
+                        return;
+                    }
+                }
+
+            }
+        }
+    }
+
 
 }
